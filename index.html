@@ -37,455 +37,227 @@
       overflow-x: hidden;
     }
 
-    /* Background decoration */
     body::before {
       content: '';
-      position: fixed;
-      top: -30%;
-      right: -20%;
-      width: 60vw;
-      height: 60vw;
+      position: fixed; top: -30%; right: -20%;
+      width: 60vw; height: 60vw;
       background: radial-gradient(circle, rgba(233,69,96,0.12) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
+      pointer-events: none; z-index: 0;
     }
     body::after {
       content: '';
-      position: fixed;
-      bottom: -20%;
-      left: -20%;
-      width: 50vw;
-      height: 50vw;
+      position: fixed; bottom: -20%; left: -20%;
+      width: 50vw; height: 50vw;
       background: radial-gradient(circle, rgba(245,166,35,0.08) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
+      pointer-events: none; z-index: 0;
     }
 
     .app {
-      position: relative;
-      z-index: 1;
-      max-width: 480px;
-      margin: 0 auto;
-      padding: 0 0 100px;
-      min-height: 100dvh;
+      position: relative; z-index: 1;
+      max-width: 480px; margin: 0 auto;
+      padding: 0 0 110px; min-height: 100dvh;
     }
 
     /* Header */
     header {
-      padding: 52px 24px 24px;
-      position: sticky;
-      top: 0;
-      z-index: 10;
+      padding: 52px 24px 16px;
+      position: sticky; top: 0; z-index: 10;
       background: linear-gradient(to bottom, var(--bg) 70%, transparent);
     }
-
-    .header-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 6px;
-    }
-
-    header h1 {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 28px;
-      letter-spacing: -0.5px;
-      line-height: 1;
-    }
-
-    header h1 span {
-      color: var(--accent);
-    }
-
+    .header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+    header h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 28px; letter-spacing: -0.5px; line-height: 1; }
+    header h1 span { color: var(--accent); }
     .stats-badge {
-      background: rgba(233,69,96,0.15);
-      border: 1px solid rgba(233,69,96,0.3);
-      color: var(--accent);
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 13px;
-      padding: 5px 12px;
-      border-radius: 20px;
+      background: rgba(233,69,96,0.15); border: 1px solid rgba(233,69,96,0.3);
+      color: var(--accent); font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 13px; padding: 5px 12px; border-radius: 20px;
     }
+    .subtitle { font-size: 13px; color: var(--text-muted); font-weight: 300; }
 
-    .subtitle {
-      font-size: 13px;
-      color: var(--text-muted);
-      font-weight: 300;
-      letter-spacing: 0.2px;
+    .total-bar {
+      margin-top: 10px;
+      background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2);
+      border-radius: 12px; padding: 8px 14px;
+      display: flex; justify-content: space-between; align-items: center; font-size: 13px;
     }
+    .total-bar span:first-child { color: var(--text-muted); }
+    .total-bar strong { color: var(--accent2); font-family: 'Syne', sans-serif; font-size: 15px; }
 
     /* Category tabs */
     .category-scroll {
-      display: flex;
-      gap: 8px;
-      padding: 16px 24px 0;
-      overflow-x: auto;
-      scrollbar-width: none;
+      display: flex; gap: 8px; padding: 14px 24px 0;
+      overflow-x: auto; scrollbar-width: none;
     }
     .category-scroll::-webkit-scrollbar { display: none; }
-
     .cat-btn {
-      flex-shrink: 0;
-      padding: 7px 16px;
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--text-muted);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
+      flex-shrink: 0; padding: 7px 16px; border-radius: 20px;
+      border: 1px solid var(--border); background: transparent;
+      color: var(--text-muted); font-family: 'DM Sans', sans-serif;
+      font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s;
     }
+    .cat-btn.active { background: var(--accent); border-color: var(--accent); color: white; }
 
-    .cat-btn.active {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: white;
-    }
-
-    /* Input area */
-    .input-section {
-      padding: 20px 24px 0;
-    }
+    /* Input */
+    .input-section { padding: 16px 24px 0; position: relative; }
 
     .input-wrapper {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 4px 4px 4px 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: border-color 0.2s;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 4px 4px 4px 16px;
+      display: flex; align-items: center; gap: 8px; transition: border-color 0.2s;
     }
-
-    .input-wrapper:focus-within {
-      border-color: rgba(233,69,96,0.4);
+    .input-wrapper:focus-within { border-color: rgba(233,69,96,0.4); }
+    .input-wrapper input[type="text"] {
+      flex: 1; background: transparent; border: none; outline: none;
+      color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px; padding: 10px 0;
     }
-
-    .input-wrapper input {
-      flex: 1;
-      background: transparent;
-      border: none;
-      outline: none;
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 15px;
-      font-weight: 400;
-      padding: 10px 0;
-    }
-
     .input-wrapper input::placeholder { color: var(--text-muted); }
 
     .qty-input {
-      width: 48px;
-      background: var(--surface2) !important;
-      border: 1px solid var(--border) !important;
-      border-radius: 10px !important;
-      text-align: center;
-      font-size: 13px !important;
-      padding: 8px 4px !important;
+      width: 44px; flex-shrink: 0;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 10px; text-align: center; font-size: 13px;
+      padding: 8px 4px; color: var(--text); outline: none;
     }
+    .price-input {
+      width: 70px; flex-shrink: 0;
+      background: var(--surface2); border: 1px solid rgba(245,166,35,0.3);
+      border-radius: 10px; text-align: center; font-size: 13px;
+      padding: 8px 4px; color: var(--accent2); font-weight: 500; outline: none;
+    }
+    .price-input::placeholder { color: var(--text-muted); font-weight: 400; }
 
     .add-btn {
-      background: var(--accent);
-      border: none;
-      border-radius: 12px;
-      width: 44px;
-      height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: transform 0.15s, background 0.2s;
-      flex-shrink: 0;
+      background: var(--accent); border: none; border-radius: 12px;
+      width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: transform 0.15s; flex-shrink: 0;
     }
-
     .add-btn:active { transform: scale(0.92); }
-
     .add-btn svg { width: 20px; height: 20px; fill: white; }
 
-    /* Progress bar */
-    .progress-section {
-      padding: 20px 24px 0;
+    .cat-select {
+      width: 100%; margin-top: 8px;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 10px; color: var(--text); font-family: 'DM Sans', sans-serif;
+      font-size: 13px; padding: 10px 12px; outline: none; cursor: pointer;
     }
 
-    .progress-header {
-      display: flex;
-      justify-content: space-between;
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-bottom: 8px;
+    /* Autocomplete */
+    .autocomplete {
+      position: absolute; top: calc(100% - 2px); left: 24px; right: 24px;
+      background: var(--surface); border: 1px solid rgba(233,69,96,0.3);
+      border-radius: 14px; z-index: 50;
+      max-height: 240px; overflow-y: auto;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      display: none;
     }
-
-    .progress-bar {
-      height: 4px;
-      background: var(--surface);
-      border-radius: 4px;
-      overflow: hidden;
+    .autocomplete.open { display: block; }
+    .ac-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; cursor: pointer; transition: background 0.15s;
+      border-bottom: 1px solid var(--border);
     }
+    .ac-item:last-child { border-bottom: none; }
+    .ac-item:active { background: rgba(233,69,96,0.08); }
+    .ac-left { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+    .ac-name { font-size: 14px; font-weight: 500; }
+    .ac-name mark { background: none; color: var(--accent); font-weight: 700; }
+    .ac-meta { font-size: 11px; color: var(--text-muted); }
+    .ac-price { font-size: 13px; color: var(--accent2); font-weight: 600; flex-shrink: 0; margin-left: 8px; }
 
+    /* Progress */
+    .progress-section { padding: 16px 24px 0; }
+    .progress-header { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
+    .progress-bar { height: 4px; background: var(--surface); border-radius: 4px; overflow: hidden; }
     .progress-fill {
       height: 100%;
       background: linear-gradient(90deg, var(--accent), var(--accent2));
-      border-radius: 4px;
-      transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border-radius: 4px; transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     /* List */
-    .list-section {
-      padding: 20px 24px 0;
-    }
-
+    .list-section { padding: 16px 24px 0; }
     .section-label {
-      font-family: 'Syne', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      margin-bottom: 12px;
+      font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700;
+      letter-spacing: 1.5px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 12px;
     }
-
-    .item-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+    .item-list { display: flex; flex-direction: column; gap: 8px; }
 
     .item-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 14px 14px 16px;
-      transition: all 0.25s;
-      animation: slideIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      cursor: pointer;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; display: flex; align-items: center; gap: 12px;
+      padding: 12px 12px 12px 16px; transition: all 0.25s;
+      animation: slideIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); cursor: pointer;
     }
-
     @keyframes slideIn {
       from { opacity: 0; transform: translateY(12px) scale(0.97); }
       to   { opacity: 1; transform: translateY(0) scale(1); }
     }
-
-    .item-card.done {
-      background: var(--done);
-      border-color: transparent;
-      opacity: 0.6;
-    }
-
-    .item-card.done .item-name {
-      text-decoration: line-through;
-      color: var(--text-muted);
-    }
+    .item-card.done { background: var(--done); border-color: transparent; opacity: 0.55; }
+    .item-card.done .item-name { text-decoration: line-through; color: var(--text-muted); }
 
     .check-circle {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      border: 2px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: all 0.2s;
-      background: transparent;
+      width: 22px; height: 22px; border-radius: 50%;
+      border: 2px solid var(--border); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: all 0.2s;
     }
-
-    .item-card.done .check-circle {
-      background: var(--accent);
-      border-color: var(--accent);
-    }
-
-    .check-circle svg {
-      width: 12px;
-      height: 12px;
-      stroke: white;
-      stroke-width: 2.5;
-      fill: none;
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-
+    .item-card.done .check-circle { background: var(--accent); border-color: var(--accent); }
+    .check-circle svg { width: 12px; height: 12px; stroke: white; stroke-width: 2.5; fill: none; opacity: 0; transition: opacity 0.2s; }
     .item-card.done .check-circle svg { opacity: 1; }
 
     .item-info { flex: 1; min-width: 0; }
-
-    .item-name {
-      font-size: 15px;
-      font-weight: 500;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      transition: color 0.2s;
-    }
-
-    .item-meta {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 3px;
-    }
-
-    .item-qty {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .item-cat {
-      font-size: 11px;
-      padding: 2px 8px;
-      border-radius: 8px;
-      background: rgba(255,255,255,0.06);
-      color: var(--text-muted);
-    }
+    .item-name { font-size: 15px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .item-meta { display: flex; align-items: center; gap: 6px; margin-top: 3px; flex-wrap: wrap; }
+    .item-qty { font-size: 12px; color: var(--text-muted); }
+    .item-cat { font-size: 11px; padding: 2px 8px; border-radius: 8px; background: rgba(255,255,255,0.06); color: var(--text-muted); }
+    .item-price { font-size: 12px; color: var(--accent2); font-weight: 600; }
+    .item-total { font-size: 11px; color: var(--text-muted); }
 
     .delete-btn {
-      background: none;
-      border: none;
-      padding: 6px;
-      cursor: pointer;
-      opacity: 0.4;
-      transition: opacity 0.2s;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
+      background: none; border: none; padding: 6px; cursor: pointer;
+      opacity: 0.35; transition: opacity 0.2s; border-radius: 8px; display: flex; align-items: center;
     }
-
     .delete-btn:active { opacity: 1; }
+    .delete-btn svg { width: 16px; height: 16px; stroke: var(--accent); fill: none; stroke-width: 2; }
 
-    .delete-btn svg {
-      width: 16px;
-      height: 16px;
-      stroke: var(--accent);
-      fill: none;
-      stroke-width: 2;
-    }
+    .empty { text-align: center; padding: 40px 0; color: var(--text-muted); }
+    .empty-icon { font-size: 40px; margin-bottom: 12px; }
+    .empty p { font-size: 14px; line-height: 1.6; }
 
-    /* Category select */
-    .cat-select {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13px;
-      padding: 8px 10px;
-      outline: none;
-      cursor: pointer;
-      margin-top: 10px;
-      width: 100%;
-    }
-
-    /* Empty state */
-    .empty {
-      text-align: center;
-      padding: 40px 0;
-      color: var(--text-muted);
-    }
-
-    .empty-icon {
-      font-size: 40px;
-      margin-bottom: 12px;
-    }
-
-    .empty p {
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    /* Clear done button */
     .clear-btn {
-      display: block;
-      width: 100%;
-      margin-top: 16px;
-      padding: 12px;
-      background: transparent;
-      border: 1px dashed rgba(233,69,96,0.3);
-      border-radius: 12px;
-      color: var(--accent);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13px;
-      cursor: pointer;
-      transition: all 0.2s;
+      display: block; width: 100%; margin-top: 14px; padding: 12px;
+      background: transparent; border: 1px dashed rgba(233,69,96,0.3);
+      border-radius: 12px; color: var(--accent); font-family: 'DM Sans', sans-serif;
+      font-size: 13px; cursor: pointer; transition: all 0.2s;
     }
-
-    .clear-btn:active {
-      background: rgba(233,69,96,0.08);
-    }
+    .clear-btn:active { background: rgba(233,69,96,0.08); }
 
     /* Bottom nav */
     .bottom-bar {
-      position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      max-width: 480px;
-      background: rgba(15,15,26,0.92);
-      backdrop-filter: blur(20px);
+      position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 100%; max-width: 480px;
+      background: rgba(15,15,26,0.93); backdrop-filter: blur(20px);
       border-top: 1px solid var(--border);
       padding: 12px 24px calc(12px + env(safe-area-inset-bottom));
-      display: flex;
-      justify-content: space-around;
-      z-index: 20;
+      display: flex; justify-content: space-around; z-index: 20;
     }
-
     .nav-btn {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--text-muted);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 10px;
-      padding: 4px 16px;
-      border-radius: 10px;
-      transition: color 0.2s;
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      background: none; border: none; cursor: pointer; color: var(--text-muted);
+      font-family: 'DM Sans', sans-serif; font-size: 10px; padding: 4px 16px;
+      border-radius: 10px; transition: color 0.2s;
     }
-
     .nav-btn.active { color: var(--accent); }
+    .nav-btn svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; }
 
-    .nav-btn svg {
-      width: 22px;
-      height: 22px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.8;
-    }
-
-    /* Toast */
     .toast {
-      position: fixed;
-      bottom: 90px;
-      left: 50%;
+      position: fixed; bottom: 90px; left: 50%;
       transform: translateX(-50%) translateY(20px);
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 10px 20px;
-      border-radius: 12px;
-      font-size: 13px;
-      opacity: 0;
-      transition: all 0.3s;
-      pointer-events: none;
-      white-space: nowrap;
-      z-index: 100;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text); padding: 10px 20px; border-radius: 12px;
+      font-size: 13px; opacity: 0; transition: all 0.3s;
+      pointer-events: none; white-space: nowrap; z-index: 100;
     }
-
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
   </style>
 </head>
 <body>
@@ -497,6 +269,10 @@
       <div class="stats-badge" id="statsBadge">0 ürün</div>
     </div>
     <p class="subtitle" id="subtitle">Bugün ne almam lazım?</p>
+    <div class="total-bar" id="totalBar" style="display:none">
+      <span>Tahmini toplam</span>
+      <strong id="totalAmount">₺0,00</strong>
+    </div>
   </header>
 
   <div class="category-scroll" id="categoryTabs">
@@ -510,10 +286,11 @@
     <button class="cat-btn" data-cat="Diğer">📦 Diğer</button>
   </div>
 
-  <div class="input-section">
+  <div class="input-section" id="inputSection">
     <div class="input-wrapper">
-      <input type="text" id="itemInput" placeholder="Ürün ekle..." autocomplete="off" />
+      <input type="text" id="itemInput" placeholder="Ürün ara veya ekle..." autocomplete="off" />
       <input type="number" class="qty-input" id="qtyInput" value="1" min="1" max="99" />
+      <input type="number" class="price-input" id="priceInput" placeholder="₺fiyat" step="0.01" min="0" />
       <button class="add-btn" id="addBtn">
         <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
       </button>
@@ -528,6 +305,7 @@
       <option value="Temizlik">🧹 Temizlik</option>
       <option value="Diğer">📦 Diğer</option>
     </select>
+    <div class="autocomplete" id="autocomplete"></div>
   </div>
 
   <div class="progress-section" id="progressSection" style="display:none">
@@ -543,14 +321,11 @@
   <div class="list-section">
     <div class="section-label" id="listLabel">Liste</div>
     <div class="item-list" id="itemList"></div>
-    <button class="clear-btn" id="clearDoneBtn" style="display:none">
-      ✓ Alınanları temizle
-    </button>
+    <button class="clear-btn" id="clearDoneBtn" style="display:none">✓ Alınanları temizle</button>
   </div>
 
 </div>
 
-<!-- Bottom nav -->
 <div class="bottom-bar">
   <button class="nav-btn active">
     <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
@@ -565,72 +340,162 @@
 <div class="toast" id="toast"></div>
 
 <script>
-  // --- State ---
-  let items = JSON.parse(localStorage.getItem('shopItems') || '[]');
+  let items  = JSON.parse(localStorage.getItem('shopItems')  || '[]');
+  let memory = JSON.parse(localStorage.getItem('shopMemory') || '[]');
   let activeFilter = 'Hepsi';
 
-  // --- Save ---
   function save() {
-    localStorage.setItem('shopItems', JSON.stringify(items));
+    localStorage.setItem('shopItems',  JSON.stringify(items));
+    localStorage.setItem('shopMemory', JSON.stringify(memory));
   }
 
-  // --- Toast ---
+  function saveToMemory(name, cat, price) {
+    const key = name.toLowerCase().trim();
+    const idx = memory.findIndex(m => m.name.toLowerCase() === key);
+    if (idx >= 0) {
+      memory[idx] = { name, cat, price };
+    } else {
+      memory.unshift({ name, cat, price });
+      if (memory.length > 300) memory = memory.slice(0, 300);
+    }
+  }
+
+  function searchMemory(q) {
+    if (!q) return [];
+    const lower = q.toLowerCase();
+    return memory.filter(m => m.name.toLowerCase().includes(lower)).slice(0, 7);
+  }
+
   function showToast(msg) {
     const t = document.getElementById('toast');
     t.textContent = msg;
     t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2000);
+    setTimeout(() => t.classList.remove('show'), 2200);
   }
 
-  // --- Render ---
+  function fmtPrice(p) {
+    if (p === null || p === undefined || p === '') return '';
+    return '₺' + parseFloat(p).toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  function escHtml(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function highlight(text, query) {
+    if (!query) return escHtml(text);
+    const i = text.toLowerCase().indexOf(query.toLowerCase());
+    if (i < 0) return escHtml(text);
+    return escHtml(text.slice(0,i)) + '<mark>' + escHtml(text.slice(i, i+query.length)) + '</mark>' + escHtml(text.slice(i+query.length));
+  }
+
+  // ── AUTOCOMPLETE ───────────────────────
+  const acBox     = document.getElementById('autocomplete');
+  const itemInput = document.getElementById('itemInput');
+
+  function openAC(results, query) {
+    if (!results.length) { closeAC(); return; }
+    acBox.innerHTML = results.map(r => `
+      <div class="ac-item"
+           data-name="${escHtml(r.name)}"
+           data-cat="${escHtml(r.cat)}"
+           data-price="${r.price !== null && r.price !== undefined ? r.price : ''}">
+        <div class="ac-left">
+          <span class="ac-name">${highlight(r.name, query)}</span>
+          <span class="ac-meta">${escHtml(r.cat)}</span>
+        </div>
+        ${r.price ? `<span class="ac-price">${fmtPrice(r.price)}</span>` : ''}
+      </div>`).join('');
+    acBox.classList.add('open');
+
+    acBox.querySelectorAll('.ac-item').forEach(el => {
+      el.addEventListener('mousedown', e => e.preventDefault()); // blur engellemek için
+      el.addEventListener('click', () => {
+        itemInput.value = el.dataset.name;
+        document.getElementById('catSelect').value = el.dataset.cat || 'Diğer';
+        if (el.dataset.price) document.getElementById('priceInput').value = el.dataset.price;
+        closeAC();
+        itemInput.focus();
+      });
+    });
+  }
+
+  function closeAC() { acBox.classList.remove('open'); }
+
+  itemInput.addEventListener('input', () => {
+    const q = itemInput.value.trim();
+    openAC(searchMemory(q), q);
+  });
+  itemInput.addEventListener('blur', () => setTimeout(closeAC, 150));
+
+  // ── ADD ────────────────────────────────
+  function addItem() {
+    const name  = itemInput.value.trim();
+    const qty   = parseInt(document.getElementById('qtyInput').value) || 1;
+    const rawP  = document.getElementById('priceInput').value;
+    const price = rawP !== '' ? parseFloat(rawP) : null;
+    const cat   = document.getElementById('catSelect').value;
+    if (!name) { itemInput.focus(); return; }
+
+    items.unshift({ id: Date.now(), name, qty, price, cat, done: false });
+    saveToMemory(name, cat, price);
+    save(); render();
+
+    itemInput.value = '';
+    document.getElementById('qtyInput').value  = 1;
+    document.getElementById('priceInput').value = '';
+    closeAC();
+    itemInput.focus();
+    showToast(`+ ${name} eklendi`);
+  }
+
+  document.getElementById('addBtn').addEventListener('click', addItem);
+  itemInput.addEventListener('keydown', e => { if (e.key === 'Enter') addItem(); });
+
+  // ── RENDER ─────────────────────────────
   function render() {
-    const list = document.getElementById('itemList');
-    const filtered = activeFilter === 'Hepsi'
-      ? items
-      : items.filter(i => i.cat === activeFilter);
+    const list     = document.getElementById('itemList');
+    const filtered = activeFilter === 'Hepsi' ? items : items.filter(i => i.cat === activeFilter);
+    const total    = items.length;
+    const done     = items.filter(i => i.done).length;
 
-    const total = items.length;
-    const done = items.filter(i => i.done).length;
-
-    // Stats
     document.getElementById('statsBadge').textContent = `${total} ürün`;
     document.getElementById('subtitle').textContent =
       total === 0 ? 'Bugün ne almam lazım?' :
       done === total && total > 0 ? '🎉 Hepsi tamamlandı!' :
       `${done} alındı, ${total - done} kaldı`;
 
-    // Progress
-    const progressSection = document.getElementById('progressSection');
-    if (total > 0) {
-      progressSection.style.display = 'block';
-      document.getElementById('progressText').textContent = `${done} / ${total} tamamlandı`;
-      document.getElementById('progressFill').style.width = `${(done/total)*100}%`;
+    // Toplam tutar
+    const remaining = items.filter(i => !i.done);
+    const hasPrice  = remaining.some(i => i.price !== null && i.price !== undefined);
+    const totalAmt  = remaining.reduce((s, i) => s + (i.price ? i.price * i.qty : 0), 0);
+    const totalBar  = document.getElementById('totalBar');
+    if (hasPrice && total > 0) {
+      totalBar.style.display = 'flex';
+      document.getElementById('totalAmount').textContent = fmtPrice(totalAmt);
     } else {
-      progressSection.style.display = 'none';
+      totalBar.style.display = 'none';
     }
 
-    // Clear done btn
+    // Progress
+    const ps = document.getElementById('progressSection');
+    if (total > 0) {
+      ps.style.display = 'block';
+      document.getElementById('progressText').textContent = `${done} / ${total} tamamlandı`;
+      document.getElementById('progressFill').style.width = `${(done/total)*100}%`;
+    } else { ps.style.display = 'none'; }
+
     document.getElementById('clearDoneBtn').style.display = done > 0 ? 'block' : 'none';
+    document.getElementById('listLabel').textContent = activeFilter === 'Hepsi' ? 'Tüm Ürünler' : activeFilter;
 
-    // Label
-    document.getElementById('listLabel').textContent =
-      activeFilter === 'Hepsi' ? 'Tüm Ürünler' : activeFilter;
-
-    // List
     list.innerHTML = '';
     if (filtered.length === 0) {
-      list.innerHTML = `
-        <div class="empty">
-          <div class="empty-icon">${activeFilter === 'Hepsi' ? '🛒' : '🔍'}</div>
-          <p>${activeFilter === 'Hepsi' ? 'Liste boş.<br>Yukarıdan ürün ekle!' : 'Bu kategoride ürün yok.'}</p>
-        </div>`;
+      list.innerHTML = `<div class="empty"><div class="empty-icon">${activeFilter==='Hepsi'?'🛒':'🔍'}</div><p>${activeFilter==='Hepsi'?'Liste boş.<br>Yukarıdan ürün ekle!':'Bu kategoride ürün yok.'}</p></div>`;
       return;
     }
 
-    // Show undone first
-    const sorted = [...filtered].sort((a,b) => a.done - b.done);
-
-    sorted.forEach(item => {
+    [...filtered].sort((a,b) => a.done - b.done).forEach(item => {
+      const lineTotal = (item.price && item.qty) ? item.price * item.qty : null;
       const card = document.createElement('div');
       card.className = `item-card${item.done ? ' done' : ''}`;
       card.innerHTML = `
@@ -641,67 +506,32 @@
           <div class="item-name">${escHtml(item.name)}</div>
           <div class="item-meta">
             <span class="item-qty">× ${item.qty}</span>
-            <span class="item-cat">${item.cat}</span>
+            <span class="item-cat">${escHtml(item.cat)}</span>
+            ${item.price !== null && item.price !== undefined ? `<span class="item-price">${fmtPrice(item.price)}</span>` : ''}
+            ${lineTotal && item.qty > 1 ? `<span class="item-total">= ${fmtPrice(lineTotal)}</span>` : ''}
           </div>
         </div>
-        <button class="delete-btn" data-id="${item.id}" aria-label="Sil">
+        <button class="delete-btn" aria-label="Sil">
           <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/></svg>
-        </button>
-      `;
+        </button>`;
 
-      // Toggle done
-      card.querySelector('.check-circle').addEventListener('click', (e) => {
-        e.stopPropagation();
+      const toggle = () => {
         const idx = items.findIndex(i => i.id === item.id);
         items[idx].done = !items[idx].done;
         save(); render();
         if (items[idx].done) showToast(`✓ ${item.name} alındı`);
-      });
-
-      card.addEventListener('click', () => {
-        const idx = items.findIndex(i => i.id === item.id);
-        items[idx].done = !items[idx].done;
-        save(); render();
-        if (items[idx].done) showToast(`✓ ${item.name} alındı`);
-      });
-
-      card.querySelector('.delete-btn').addEventListener('click', (e) => {
+      };
+      card.querySelector('.check-circle').addEventListener('click', e => { e.stopPropagation(); toggle(); });
+      card.addEventListener('click', toggle);
+      card.querySelector('.delete-btn').addEventListener('click', e => {
         e.stopPropagation();
         items = items.filter(i => i.id !== item.id);
-        save(); render();
-        showToast('Ürün silindi');
+        save(); render(); showToast('Ürün silindi');
       });
-
       list.appendChild(card);
     });
   }
 
-  function escHtml(str) {
-    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  }
-
-  // --- Add item ---
-  function addItem() {
-    const input = document.getElementById('itemInput');
-    const qty = parseInt(document.getElementById('qtyInput').value) || 1;
-    const cat = document.getElementById('catSelect').value;
-    const name = input.value.trim();
-    if (!name) { input.focus(); return; }
-
-    items.unshift({ id: Date.now(), name, qty, cat, done: false });
-    save(); render();
-    input.value = '';
-    document.getElementById('qtyInput').value = 1;
-    input.focus();
-    showToast(`+ ${name} eklendi`);
-  }
-
-  document.getElementById('addBtn').addEventListener('click', addItem);
-  document.getElementById('itemInput').addEventListener('keydown', e => {
-    if (e.key === 'Enter') addItem();
-  });
-
-  // --- Category tabs ---
   document.getElementById('categoryTabs').addEventListener('click', e => {
     const btn = e.target.closest('.cat-btn');
     if (!btn) return;
@@ -711,30 +541,16 @@
     render();
   });
 
-  // --- Clear done ---
   document.getElementById('clearDoneBtn').addEventListener('click', () => {
-    items = items.filter(i => !i.done);
-    save(); render();
-    showToast('Alınanlar temizlendi');
+    items = items.filter(i => !i.done); save(); render(); showToast('Alınanlar temizlendi');
   });
-
-  // --- Clear all ---
   document.getElementById('clearAllNav').addEventListener('click', () => {
-    if (items.length === 0) { showToast('Liste zaten boş'); return; }
-    if (confirm('Tüm liste silinsin mi?')) {
-      items = [];
-      save(); render();
-      showToast('Liste temizlendi');
-    }
+    if (!items.length) { showToast('Liste zaten boş'); return; }
+    if (confirm('Tüm liste silinsin mi?')) { items = []; save(); render(); showToast('Liste temizlendi'); }
   });
 
-  // --- Init ---
   render();
-
-  // --- Service Worker ---
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js').catch(() => {});
-  }
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
 </body>
 </html>
