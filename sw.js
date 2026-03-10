@@ -1,4 +1,4 @@
-const CACHE = 'alisveris-v1';
+const CACHE = 'alisveris-v3';
 const ASSETS = ['./index.html', './manifest.json'];
 
 self.addEventListener('install', e => {
